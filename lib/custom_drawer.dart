@@ -21,7 +21,7 @@ class CustomDrawer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Eu Amo Séries 🎬',
+                    'I Love Series 🎬',
                     style: GoogleFonts.lobster(
                       color: Theme.of(context).colorScheme.onPrimary,
                       fontSize: 32,
@@ -38,7 +38,7 @@ class CustomDrawer extends StatelessWidget {
                     icon: !context.watch<MyThemeModel>().isDark
                         ? Icon(Icons.nightlight_round_sharp, size: 24)
                         : Icon(Icons.wb_sunny_outlined, size: 24),
-                    label: Text('Mudar Tema'),
+                    label: Text('Change theme'),
                   ),
                 ],
               ),
@@ -46,7 +46,7 @@ class CustomDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.favorite),
-            title: Text('Favoritas'),
+            title: Text('Favorite'),
             onTap: () {
               Navigator.of(context).pop();
               context.go('/');
@@ -54,7 +54,7 @@ class CustomDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.search),
-            title: Text('Buscar'),
+            title: Text('Search'),
             onTap: () {
               // switchScreen(1);
               Navigator.of(context).pop();

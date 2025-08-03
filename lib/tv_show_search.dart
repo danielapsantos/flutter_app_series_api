@@ -37,7 +37,10 @@ class _TvShowSearchScreenState extends State<TvShowSearchScreen> {
         children: [
           Text(
             'Search Series',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 24
+            ),
           ),
           SizedBox(height: 30),
           Form(

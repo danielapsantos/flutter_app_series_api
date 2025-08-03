@@ -5,7 +5,7 @@ class TvShow {
   int id;
   String imageUrl;
   String name;
-  String webChanel;
+  String webChannel;
   double rating;
   String summary;
 
@@ -13,7 +13,7 @@ class TvShow {
     required this.id,
     required this.imageUrl,
     required this.name,
-    required this.webChanel,
+    required this.webChannel,
     required this.rating,
     required this.summary,
   });
@@ -23,7 +23,7 @@ class TvShow {
       id: json['id'],
       imageUrl: json['image']?['medium'] ?? '',
       name: json['name'],
-      webChanel: json['webChanel']?['name'] ?? 'N/A',
+      webChannel: json['webChanel']?['name'] ?? 'N/A',
       rating: json['rating']?['average']?.toDouble() ?? 0.0,
       summary: json['summary'] ?? 'No summary available.',
     );
@@ -35,6 +35,14 @@ class TvShowModel extends ChangeNotifier {
 
   final List<TvShow> _tvShows = [];
   List<TvShow> get tvShows => _tvShows;
+
+  Future<TvShow> getTvShowById(int id) async {
+     try {
+      return await _tvShowService.fetchTvShowById(id);
+    } catch (e) {
+      throw Exception('Failed to search series: ${e.toString()}');
+    }
+  }
 
   Future<List<TvShow>> searchTvShows(String query) async {
     try {
@@ -49,7 +57,7 @@ class TvShowModel extends ChangeNotifier {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          'Série adicionada com sucesso!',
+          'Serie added successfully!',
           textAlign: TextAlign.center,
         ),
         duration: Duration(seconds: 2),
@@ -66,10 +74,10 @@ class TvShowModel extends ChangeNotifier {
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('${tvShow.name} excluída!'),
+        content: Text('${tvShow.name} deleted!'),
         duration: Duration(seconds: 3),
         action: SnackBarAction(
-          label: 'DESFAZER',
+          label: 'Back',
           onPressed: () {
             tvShows.insert(index, tvShow);
             notifyListeners();
@@ -85,7 +93,7 @@ class TvShowModel extends ChangeNotifier {
     tvShows[index] = newTvShow;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('Série ${index + 1} atualizada!'),
+        content: Text('Updated ${index + 1} serie!'),
         duration: Duration(seconds: 2),
       ),
     );
